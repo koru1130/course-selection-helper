@@ -11,7 +11,7 @@ export let height: number
 </script>
 
 
-<div style="position: relative; min-height: {height}px;">
+<div style="position: relative; min-height: {height}em;">
     {#each v as x, i}
         {#if x != "PlaceHolder"}
             <CourseBar serNo={x[0]} sectionId={x[1]} nth={i} />

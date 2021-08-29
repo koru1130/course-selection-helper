@@ -75,6 +75,30 @@ $: sortedCourses = (()=>{
         background-color: lightgray;
     }
 
+    thead tr th {
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        top: 0;
+        background-color: lightgray;
+        z-index: 2;
+    }
+    
+    tbody th {
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        left: 0;
+        background-color: lightgray;
+        max-width: 1em;
+        z-index: 2;
+    }
+
+    thead th:first-child {
+        left: 0;
+        z-index: 3;
+        background-color: white;
+        min-width: 2em; 
+    }
+
 
 </style>
 
@@ -98,8 +122,8 @@ $: sortedCourses = (()=>{
                 {rowName}
             </th>
             {#each columns as _, j}
-                <td>                    
-                    <GridCell v={sortedCourses[i][j]} height={100} />
+                <td>                                    
+                    <GridCell v={sortedCourses[i][j]} height={10} />
                 </td>
             {/each}
         </tr>
