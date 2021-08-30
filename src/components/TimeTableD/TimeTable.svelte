@@ -75,12 +75,16 @@ $: sortedCourses = (()=>{
         background-color: lightgray;
     }
 
+    th {        
+        text-align: center;
+    }
+
     thead tr th {
         position: -webkit-sticky; /* for Safari */
         position: sticky;
         top: 0;
         background-color: lightgray;
-        z-index: 2;
+        z-index: 2;        
     }
     
     tbody th {
@@ -89,7 +93,7 @@ $: sortedCourses = (()=>{
         left: 0;
         background-color: lightgray;
         max-width: 1em;
-        z-index: 2;
+        z-index: 2;        
     }
 
     thead th:first-child {
