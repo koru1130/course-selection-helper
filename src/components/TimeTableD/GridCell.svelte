@@ -7,7 +7,7 @@ import CourseBar from "./CourseBar.svelte";
 
 export let v: ([SerNo, number] | "PlaceHolder")[]
 export let height: number
-const _v = v.map( (x, i) => ({x, i}) ).filter( y => y.x != "PlaceHolder") as {
+$: _v = v.map( (x, i) => ({x, i}) ).filter( y => y.x != "PlaceHolder") as {
     x: [string, number];
     i: number;
 }[]
