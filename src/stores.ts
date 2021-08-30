@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import type { CourseDisplayStatus, CourseList } from './types';
 import { persistentWritable, writableFamily } from './utils';
 
-const sampleCandidateCourses = ['74987', '12179', '34256', '80120', '12941', '69889']
+const sampleCandidateCourses = ["12941","76953","69889","80120","54547"]
 
 export let candidateCourses  = persistentWritable<CourseList>("candidateCourses", []) //writable<CourseList>([]);
 export let selectedCourses   = persistentWritable<CourseList>("selectedCourses", sampleCandidateCourses);
