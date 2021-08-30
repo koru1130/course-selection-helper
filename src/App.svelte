@@ -1,5 +1,5 @@
 <script lang="ts">    
-    import TimeTable from './components/TimeTableD/Timetable.svelte'    
+    import TimeTable from './components/TimeTableD/TimeTable.svelte'    
     import CourseList from './components/CouseListD/CourseList.svelte'
     import {candidateCourses, selectedCourses} from './stores'
     import { onMount } from "svelte";
