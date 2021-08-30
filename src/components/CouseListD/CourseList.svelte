@@ -1,7 +1,7 @@
 <script lang="ts">
 
 
-import SortableList from "../SortableList.svelte";
+import SortableList from "../utils/SortableList.svelte";
 import ListItem from "./ListItem.svelte";
 export let courseList = [];
 

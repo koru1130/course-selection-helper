@@ -1,16 +1,18 @@
 <!-- from https://github.com/pal03377/svelte-sortablejs/blob/master/SortableList.svelte -->
 <script lang="ts">
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	const dispatch = createEventDispatcher();
     import Sortable from 'sortablejs';
-import { console } from 'fp-ts';
+    //import { console } from 'fp-ts';
+    //上面這東西是不小心導入的，而且沒用
     // every item is an object with a unique ID for identification
     export let items = [];
-    $: console.log(items)
+    //$: console.log(items)
     export let keyFn: ((x: any) => string) = x => x; // id attribute changeable if needed
     export let className = "";    
     export let getItemById = undefined;
     export let sortableOptions : Sortable.SortableOptions = {};
+    //let debugId = Math.floor(Math.random() * 99) + 1;
     sortableOptions = Object.assign({}, sortableOptions); // prevent leak to outside
     if (sortableOptions.dataIdAttr) throw new Error("sortableOptions.dataIdAttr is currently not supported.");
     sortableOptions.store = sortableOptions.store || {
@@ -26,18 +28,22 @@ import { console } from 'fp-ts';
     let _store_set = sortableOptions.store.set;
     sortableOptions.store.set = (sortable) => {
         items = sortable.toArray()//.map(getItemById);
-        console.log(sortable.toArray())
+        //console.log(`[${debugId}]`,sortable.toArray())
         _store_set(sortable); // still call old set callback function
         dispatch("orderChanged", items);
     };
     
     let sortable;
-    let listElement;    
+    let listElement;        
     onMount(() => {
-        // if(listElement && !sortable) {        
-        sortable = Sortable.create(listElement, sortableOptions);
-        console.log("Sortable Created")
+        // if(listElement && !sortable) {                            
+        sortable = Sortable.create(listElement, sortableOptions);        
+        console.log("Sortable Created")    
     // }
+    })
+    onDestroy(()=> {
+        sortable.destroy()
+        console.log("Sortable Deleted")
     })
     $: for (let item of items) {
         if (!item || keyFn(item) == null) {
