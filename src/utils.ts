@@ -27,3 +27,19 @@ export function persistentWritable<T>(key : string, startValue : T){
     }
   };
 }
+
+//https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array/840808#840808
+export function findDuplicates<T>(arr: T[]) { 
+    let sorted_arr = arr.slice().sort(); // You can define the comparing function here. 
+    // JS by default uses a crappy string compare.
+    // (we use slice to clone the array so the
+    // original array won't be modified)
+    let results = [];
+    for (let i = 0; i < sorted_arr.length - 1; i++) {
+      if ( sorted_arr[i + 1] == sorted_arr[i] 
+        && results[results.length-1] != sorted_arr[i] /* check duplicated in sorted_arr */ ) { 
+        results.push(sorted_arr[i]);
+      }
+    }
+    return results;
+}

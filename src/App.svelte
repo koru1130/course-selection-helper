@@ -1,9 +1,13 @@
-<script lang="ts">
-    import SortableList from "./components/utils/SortableList.svelte";
+<script lang="ts">    
     import TimeTable from './components/TimeTableD/Timetable.svelte'    
     import CourseList from './components/CouseListD/CourseList.svelte'
     import {candidateCourses, selectedCourses} from './stores'
     import { onMount } from "svelte";
+import { findDuplicates } from './utils';
+import { concat } from 'fp-ts/lib/ReadonlyNonEmptyArray';
+import { map } from 'fp-ts/lib/Functor';
+import { trim } from 'fp-ts/lib/string';
+
     let displaySerNo = false;
     $: console.log(displaySerNo)
 
@@ -55,15 +59,23 @@
             <div class="form-check form-switch" on:click={()=>document.activeElement.blur()}>
                 <input class="form-check-input shadow-none" type="checkbox" id="switchSerNo" 
                     bind:checked={displaySerNo} 
-                    on:change={()=> {
+                    on:change={(e)=> {
                         if(displaySerNo){
                             // list -> textarea
                             editCandidateCourses = $candidateCourses.join("\n")
                             editSelectedCourses = $selectedCourses.join("\n")
                         }else{
                             // textarea -> list
-                            $candidateCourses = editCandidateCourses.split('\n').filter( x => x.length>=1 )
-                            $selectedCourses = editSelectedCourses.split('\n').filter( x => x.length>=1 )
+                            const _candidateCourses = editCandidateCourses.split('\n').filter( x => x.length>=1 ).map( x => x.trim() )
+                            const _selectedCourses = editSelectedCourses.split('\n').filter( x => x.length>=1 ).map(x => x.trim())
+                            const duplicatedItem = findDuplicates(_candidateCourses.concat(_selectedCourses))
+                            if(duplicatedItem.length >= 1){
+                                alert(`Duplicated Item: ${duplicatedItem}`)
+                                displaySerNo = true
+                            }else{
+                                $candidateCourses = _candidateCourses
+                                $selectedCourses = _selectedCourses
+                            }
                         }
                     }}
                 >
