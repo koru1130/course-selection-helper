@@ -18,11 +18,12 @@
     .ListItem {
         position: relative;
         display: block;
-        /* padding: .75rem 1.25rem; */
+        padding: .75rem .5rem;
         margin-bottom: -1px;
         /* background-color: #fff;  */
         border: 1px solid rgba(0,0,0,.125);
         /* font-size: smaller; */
+
         user-select: none;
     }
 </style>
