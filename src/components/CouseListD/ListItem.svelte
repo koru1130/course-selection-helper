@@ -1,9 +1,17 @@
 <script lang="ts">
     import type { SerNo } from "../../types";
     import {getCourse} from '../../data/getCourse'
+    import { courseDisplayStatuses } from "../../stores";
 
     export let serNo: SerNo;
     const course = getCourse(serNo)
+    const displayStatus = courseDisplayStatuses(serNo)
+    $: backgroundColor =
+        course
+            ? $displayStatus.isHighlighting
+                ? '#C8EBFB'
+                : 'none'
+            : 'red'
 </script>
 
 <style>
@@ -19,6 +27,10 @@
     }
 </style>
 
-<div class="ListItem" data-id={serNo}>
-    {course ? serNo + "\n" + course.name : serNo}
+<div class="ListItem" data-id={serNo}
+    style={`background-color : ${backgroundColor};`}
+    on:mouseenter={()=> $displayStatus.isHighlighting = true}
+    on:mouseleave={()=> $displayStatus.isHighlighting = false}
+>
+    {course ? serNo + "\n" + course.name : serNo}    
 </div>
