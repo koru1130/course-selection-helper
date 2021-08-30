@@ -1,3 +1,5 @@
+import { array } from "fp-ts";
+import { pipe } from "fp-ts/lib/function";
 import { Writable, writable } from "svelte/store";
 
 export function writableFamily<K, V>(defaultValue: V) {
@@ -43,3 +45,11 @@ export function findDuplicates<T>(arr: T[]) {
     }
     return results;
 }
+
+export const getMaxArraySize = 
+    <T,> (xs: T[][]) => 
+        pipe(
+            xs,
+            array.map( x => x.length ),
+            array.reduce(0, Math.max)
+        )

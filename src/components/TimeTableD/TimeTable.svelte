@@ -7,10 +7,13 @@ import { array } from 'fp-ts'
 import { pipe } from 'fp-ts/lib/function'
 import { cellWidth } from "../../consts";
 import { debug } from "svelte/internal";
+import { getMaxArraySize } from "../../utils";
 const rows = ['一', '二', '三', '四', '五', '六']
 const columns = ['0','1','2','3','4','5','6','7','8','9','10','A','B','C','D']
 
 $: console.log("owo",$selectedCourses)
+
+
 
 $: sortedCourses = (()=>{
     let arr
@@ -47,6 +50,10 @@ $: sortedCourses = (()=>{
     
 })()
 
+$: _rows = rows.map( (x, i) => ({
+    name: x, 
+    h: Math.max(200, getMaxArraySize(sortedCourses[i])*40+5)
+}))
 
 </script>
 
@@ -120,14 +127,14 @@ $: sortedCourses = (()=>{
         </tr>
     </thead>
     <tbody>
-    {#each rows as rowName, i}
-        <tr style="width: {columns.length * cellWidth} em">
-            <th>
-                {rowName}
+    {#each _rows as {name, h}, i}
+        <tr style="width: {columns.length * cellWidth} em; height: {h}px">
+            <th style="height: {h}px">
+                {name}
             </th>
             {#each columns as _, j}
-                <td>                                    
-                    <GridCell v={sortedCourses[i][j]} height={10} />
+                <td style="height: {h}px">                                    
+                    <GridCell v={sortedCourses[i][j]} height={h} />
                 </td>
             {/each}
         </tr>

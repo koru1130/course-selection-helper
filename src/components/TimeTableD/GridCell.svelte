@@ -16,7 +16,7 @@ onMount( () => console.log("GridCell", v) )
 </script>
 
 
-<div style="position: relative; min-height: {height}em;">
+<div style="position: relative; height: {height}px;">
     {#each _v as { x, i } (x[0])}        
         <CourseBar serNo={x[0]} sectionId={x[1]} nth={i} />        
     {/each}
