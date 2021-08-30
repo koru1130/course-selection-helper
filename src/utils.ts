@@ -7,3 +7,23 @@ export function writableFamily<K, V>(defaultValue: V) {
         return hashmap.get(k)
     }
 }
+
+// from https://stackoverflow.com/questions/56488202/how-to-persist-svelte-store/61300826#61300826
+export function persistentWritable<T>(key : string, startValue : T){
+  const { subscribe, set } = writable(startValue);
+  
+  return {
+    subscribe,
+    set,
+    useLocalStorage: () => {
+      const json = localStorage.getItem(key);
+      if (json) {
+        set(JSON.parse(json));
+      }
+      
+      subscribe(current => {
+        localStorage.setItem(key, JSON.stringify(current));
+      });
+    }
+  };
+}

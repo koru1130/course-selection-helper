@@ -3,11 +3,16 @@
     import TimeTable from './components/TimeTableD/Timetable.svelte'    
     import CourseList from './components/CouseListD/CourseList.svelte'
     import {candidateCourses, selectedCourses} from './stores'
+    import { onMount } from "svelte";
     let displaySerNo = false;
     $: console.log(displaySerNo)
 
     let editCandidateCourses = "";
     let editSelectedCourses = "";
+    onMount(()=>{
+        candidateCourses.useLocalStorage()
+        selectedCourses.useLocalStorage()
+    })
 
 </script>
 
