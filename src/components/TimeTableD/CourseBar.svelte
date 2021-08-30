@@ -30,6 +30,7 @@ $: backgroundColor = $displayStatus.isHighlighting ? 'deeppink' : 'rgb(89, 151, 
         border-radius: 5px;            
         z-index: 1;
         padding-left: 3px;
+        margin-left: 2px;        
     }
 </style>
 
@@ -38,7 +39,8 @@ $: backgroundColor = $displayStatus.isHighlighting ? 'deeppink' : 'rgb(89, 151, 
     class="CourseBar" 
     style={`
     top: ${(nth * 40 + 5)}px; 
-    width: ${(length * cellWidth - 0.5)}em; 
+
+    width: ${(length * cellWidth -0.3)}em; 
     background-color: ${backgroundColor}`}
     on:mouseenter={()=> $displayStatus.isHighlighting = true}
     on:mouseleave={()=> $displayStatus.isHighlighting = false}
