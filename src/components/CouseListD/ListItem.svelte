@@ -4,6 +4,7 @@
     import { courseDisplayStatuses } from "../../stores";
 
     export let serNo: SerNo;
+    export let deleteItem;
     const course = getCourse(serNo)
     const displayStatus = courseDisplayStatuses(serNo)
     $: backgroundColor =
@@ -33,5 +34,10 @@
     on:mouseenter={()=> $displayStatus.isHighlighting = true}
     on:mouseleave={()=> $displayStatus.isHighlighting = false}
 >
+    <button on:click={() => deleteItem(serNo)} >
+        <span class="material-icons">
+            clear
+        </span>
+    </button> 
     {course ? serNo + "\n" + course.name : serNo}    
 </div>

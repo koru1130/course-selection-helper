@@ -1,10 +1,13 @@
 <script lang="ts">
-
+import type { SerNo } from "../../types";
 
 import SortableList from "../utils/SortableList.svelte";
 import ListItem from "./ListItem.svelte";
 export let courseList = [];
-
+const deleteItem = (x: SerNo) => {
+    courseList = courseList.filter(y => y!=x )
+    console.log("DELETE")
+}
 </script>
 
 <style>
@@ -19,7 +22,7 @@ export let courseList = [];
 
 
 <SortableList 
-    className="list"
+    className="list list-group"
     bind:items={courseList}
     let:item    
     sortableOptions={{
@@ -28,5 +31,5 @@ export let courseList = [];
         group: "courseList"
     }}
 >
-    <ListItem serNo={item} />
+    <ListItem serNo={item} deleteItem={deleteItem} />
 </SortableList>
