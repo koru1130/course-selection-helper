@@ -27,9 +27,10 @@ export type TimeSection = ReturnType<typeof CTimeSection>
 export const CCourseData = (
     serNo : SerNo, //流水號
     name : string,
-    time : TimeSection[] | "N/A"
+    time : TimeSection[] | "N/A",
+    teacher: string
     ) => 
-        ({serNo, name, time})
+        ({serNo, name, time, teacher})
 
 export type CourseData = ReturnType<typeof CCourseData>
 

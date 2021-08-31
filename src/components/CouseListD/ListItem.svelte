@@ -38,6 +38,13 @@
         <span class="material-icons">
             clear
         </span>
-    </button> 
-    {course ? serNo + "\n" + course.name : serNo}    
+    </button>    
+    {#if course}
+        {course.name}    
+        <br>
+        <small style="float: left"> {serNo} </small>    
+        <small style="float: right"> {course.teacher} </small>
+    {:else}
+        {serNo}
+    {/if}    
 </div>
