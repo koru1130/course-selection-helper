@@ -4,6 +4,7 @@ import type { SerNo } from "../../types";
 import SortableList from "../utils/SortableList.svelte";
 import ListItem from "./ListItem.svelte";
 export let courseList = [];
+export let refs = {};
 const deleteItem = (x: SerNo) => {
     courseList = courseList.filter(y => y!=x )
     console.log("DELETE")
@@ -22,8 +23,8 @@ const deleteItem = (x: SerNo) => {
 
 
 <SortableList 
-    className="list list-group"
-    bind:items={courseList}
+    className={"list list-group"}
+    bind:items={courseList}    
     let:item    
     sortableOptions={{
         animation:150,
@@ -31,5 +32,5 @@ const deleteItem = (x: SerNo) => {
         group: "courseList"
     }}
 >
-    <ListItem serNo={item} deleteItem={deleteItem} />
+    <ListItem bind:self={refs[item]} serNo={item} deleteItem={deleteItem} />
 </SortableList>

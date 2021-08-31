@@ -4,7 +4,7 @@ import { onMount } from "svelte";
 import { cellWidth } from "../../consts";
 
 import { getCourse } from "../../data/getCourse";
-import { courseDisplayStatuses } from "../../stores";
+import { courseDisplayStatuses, selectedCourseRefs } from "../../stores";
 
 import type { SerNo } from "../../types";
     
@@ -44,6 +44,9 @@ $: backgroundColor = $displayStatus.isHighlighting ? 'deeppink' : 'rgb(89, 151, 
     background-color: ${backgroundColor}`}
     on:mouseenter={()=> $displayStatus.isHighlighting = true}
     on:mouseleave={()=> $displayStatus.isHighlighting = false}
+    on:click={() => {
+        $selectedCourseRefs[serNo].scrollIntoView({behavior: 'smooth'})
+    }}
 >
  {serNo + " " + course.name} 
 </div>

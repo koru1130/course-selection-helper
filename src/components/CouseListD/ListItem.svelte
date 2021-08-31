@@ -2,7 +2,7 @@
     import type { SerNo } from "../../types";
     import {getCourse} from '../../data/getCourse'
     import { courseDisplayStatuses } from "../../stores";
-
+    export let self;
     export let serNo: SerNo;
     export let deleteItem;
     const course = getCourse(serNo)
@@ -31,6 +31,7 @@
 
 <div class="ListItem" data-id={serNo}
     style={`background-color : ${backgroundColor};`}
+    bind:this={self}
     on:mouseenter={()=> $displayStatus.isHighlighting = true}
     on:mouseleave={()=> $displayStatus.isHighlighting = false}
 >

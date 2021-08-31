@@ -1,12 +1,12 @@
 <script lang="ts">    
     import TimeTable from './components/TimeTableD/TimeTable.svelte'    
     import CourseList from './components/CouseListD/CourseList.svelte'
-    import {candidateCourses, selectedCourses} from './stores'
+    import {candidateCourses, selectedCourses, selectedCourseRefs} from './stores'
     import { onMount } from "svelte";
-import { findDuplicates } from './utils';
-import { concat } from 'fp-ts/lib/ReadonlyNonEmptyArray';
-import { map } from 'fp-ts/lib/Functor';
-import { trim } from 'fp-ts/lib/string';
+    import { findDuplicates } from './utils';
+    import { concat } from 'fp-ts/lib/ReadonlyNonEmptyArray';
+    import { map } from 'fp-ts/lib/Functor';
+    import { trim } from 'fp-ts/lib/string';
 
     let displaySerNo = false;
     $: console.log(displaySerNo)
@@ -85,7 +85,7 @@ import { trim } from 'fp-ts/lib/string';
         <div class="list-container">
             {#if !displaySerNo}
                 <CourseList bind:courseList={$candidateCourses}/>
-                <CourseList bind:courseList={$selectedCourses}/>
+                <CourseList bind:refs={$selectedCourseRefs} bind:courseList={$selectedCourses}/>
             {:else}
                 <textarea class="form-control" bind:value={editCandidateCourses}/>
                 <textarea class="form-control" bind:value={editSelectedCourses}/>

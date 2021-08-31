@@ -12,3 +12,7 @@ export let courseDisplayStatuses = writableFamily<string, CourseDisplayStatus>(
         isHighlighting: false
     }
 )
+
+export let selectedCourseRefs = writable({} as {
+    [key: string]: HTMLElement
+} )
