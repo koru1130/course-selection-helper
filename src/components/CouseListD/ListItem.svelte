@@ -43,7 +43,15 @@
     {#if course}
         {course.name}    
         <br>
-        <small style="float: left"> {serNo} </small>    
+        <small style="float: left"> {serNo} 
+            <button  on:click={()=>{                
+                navigator.clipboard.writeText(serNo);
+            }}>
+                <span class="material-icons" style="font-size: 0.8em;">
+                    content_copy
+                </span>
+            </button>            
+        </small>
         <small style="float: right"> {course.teacher} </small>
     {:else}
         {serNo}
