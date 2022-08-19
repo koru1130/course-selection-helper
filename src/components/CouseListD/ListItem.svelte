@@ -2,6 +2,7 @@
     import type { SerNo } from "../../types";
     import {getCourse} from '../../data/getCourse'
     import { courseDisplayStatuses } from "../../stores";
+    let copied = false;
     export let self;
     export let serNo: SerNo;
     export let deleteItem;
@@ -46,10 +47,15 @@
         <small style="float: left"> {serNo} 
             <button  on:click={()=>{                
                 navigator.clipboard.writeText(serNo);
+                copied = true;
+                setTimeout(()=>{
+                    copied = false;
+                }, 300)
             }}>
                 <span class="material-icons" style="font-size: 0.8em;">
                     content_copy
                 </span>
+                {copied ? 'Copied' : ''}
             </button>            
         </small>
         <small style="float: right"> {course.teacher} </small>
