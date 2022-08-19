@@ -55,8 +55,12 @@
 </SortableList> -->
 <div class="Main">
     <div class="left-area">
-        <div>
-            <div class="form-check form-switch" on:click={()=>document.activeElement.blur()}>
+        <div style="clear: both;">
+            <div class="form-check form-switch" on:click={()=>{
+                if (document.activeElement instanceof HTMLElement) {
+                    document.activeElement.blur();
+                }
+            }} style="float:left">
                 <input class="form-check-input shadow-none" type="checkbox" id="switchSerNo" 
                     bind:checked={displaySerNo} 
                     on:change={(e)=> {
@@ -80,6 +84,9 @@
                     }}
                 >
                 <label class="form-check-label" for="switchSerNo">編輯模式</label>
+            </div>
+            <div style="float:right;">
+                學期：111-1
             </div>
         </div>
         <div class="list-container">
