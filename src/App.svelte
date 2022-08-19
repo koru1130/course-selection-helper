@@ -74,7 +74,7 @@
                             const _selectedCourses = editSelectedCourses.split('\n').filter( x => x.length>=1 ).map(x => x.trim())
                             const duplicatedItem = findDuplicates(_candidateCourses.concat(_selectedCourses))
                             if(duplicatedItem.length >= 1){
-                                alert(`Duplicated Item: ${duplicatedItem}`)
+                                alert(`重複的流水號: ${duplicatedItem}`)
                                 displaySerNo = true
                             }else{
                                 $candidateCourses = _candidateCourses
