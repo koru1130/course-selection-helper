@@ -1,3 +1,5 @@
+A tool for pre-arrange course selections for National Taiwan University.
+
 # svelte app
 
 This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template-webpack.
