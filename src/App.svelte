@@ -86,7 +86,7 @@
                 <label class="form-check-label" for="switchSerNo">編輯模式</label>
             </div>
             <div style="float:right;">
-                學期：113-1
+                學期：113-2
             </div>
         </div>
         <div class="list-container">
